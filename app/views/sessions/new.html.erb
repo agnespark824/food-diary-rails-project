@@ -1,0 +1,15 @@
+<section class="food_diary_app">
+    <header class="header">
+        <h1>Login</h1>
+        <%= form_tag(sessions_path) do %>
+            <%= text_field_tag :username, '', :class => 'new-food-diary', placeholder: 'Enter your username' %>
+            <%= text_field_tag :password, '', :class => 'new-food-diary', placeholder: 'Enter your password' %>
+            <%= submit_tag %>
+        <% end %>
+
+        <%= link_to 'Log in through GitHub', '/auth/github' %>
+    </header>
+
+    <footer class="footer">
+    </footer>
+</section>
