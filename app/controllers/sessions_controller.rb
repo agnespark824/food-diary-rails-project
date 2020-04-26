@@ -7,8 +7,13 @@ class SessionsController < ApplicationController
 #verify login credentials
 #store authenticated user's id in session
         @user = User.find_by(username: params[:username])
-        session[:username] = params[:username]
-        redirect_to '/'
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+        
+            redirect_to root_path
+        else
+            render 'sessions/new'
+        end
     end
 
 end
