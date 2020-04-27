@@ -1,0 +1,13 @@
+<section class="food_diary_app">
+    <header class="header">
+        <h1>Create A New Account</h1>
+        <%= form_for(user) do |f| %>
+            <p> First Name:</br> <%= f.text_field :first_name %> </p>
+            <p> Last Name:</br> <%= f.text_field :last_name %> </p>
+            <p> Email:</br> <%= f.text_field :email %> </p>
+            <p> Password:</br> <%= f.password_field :password %> </p>
+            <%= f.submit :Register %>
+        <% end %>
+    </header>
+
+</section>

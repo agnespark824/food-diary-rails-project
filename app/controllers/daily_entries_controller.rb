@@ -1,4 +1,11 @@
 class DailyEntriesController < ApplicationController
+    before_action :authentication_required
+    
+    def index
+        params[:user_id]
+        entries = User.find(params[:user_id]).daily_entries
+    end
+    
     def new
         entry = DailyEntry.new
     end
