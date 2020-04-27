@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
     has_secure_password
+    has_many :daily_entries
+    has_many :meals, through :daily_entries
 
     validates :email, presence: true
     validates :email, uniqueness:true

@@ -1,0 +1,6 @@
+<%= form_tag daily_entries_path do %>
+    <%= label_tag('daily_entry[date]', "Entry Date") %>
+    <%= text_field_tag('daily_entry[date]') %>
+
+    <%= submit_tag "Create Entry" %>
+<% end %>
