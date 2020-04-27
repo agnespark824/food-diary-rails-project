@@ -3,7 +3,8 @@ class CreateDailyEntries < ActiveRecord::Migration[6.0]
     create_table :daily_entries do |t|
       t.string :entry_date
       t.integer :user_id
-      t.timestamps null:false
+      
+      t.timestamps null: false
     end
   end
 end
