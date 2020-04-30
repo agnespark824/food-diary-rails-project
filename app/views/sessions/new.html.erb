@@ -2,12 +2,14 @@
     <header class="header">
         <h1>Login</h1>
         <%= form_tag(sessions_path) do %>
-            <%= text_field_tag :username, '', :class => 'new-food-diary', placeholder: 'Enter your username' %>
-            <%= text_field_tag :password, '', :class => 'new-food-diary', placeholder: 'Enter your password' %>
-            <%= submit_tag %>
+            <p> Email: <%= text_field_tag :email, '', :class => 'new-food-diary', placeholder: 'Enter your email' %></p>
+            <p> Password: <%= password_field_tag :password, '', :class => 'new-food-diary', placeholder: 'Enter your password' %></p>
+            <%= submit_tag :Submit %>
         <% end %>
-
-        <%= link_to 'Log in through GitHub', '/auth/github' %>
+        <br>
+        <%= link_to 'Sign In With GitHub', '/auth/github' %>
+        <br>
+        <%= link_to 'Create A New Account', new_user_path %>
     </header>
 
     <footer class="footer">

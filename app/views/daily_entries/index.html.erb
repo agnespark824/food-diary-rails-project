@@ -1,0 +1,31 @@
+<section>
+    <header>
+    </header>
+
+    <section>
+        <h3>Past Entries</h3>
+        <ul>
+        <% @user.daily_entries.each do |entry| %>
+        
+            <li>
+                <div>
+                    <label><%= link_to entry.entry_date, daily_entry_path(entry) %></label>
+                </div>
+            </li>
+        <% end %>
+        </ul> 
+    </section>
+
+    <section>
+        <h4>Breakfast</h4>
+        <h4>Lunch</h4>
+        <h4>Dinner</h4>
+        <h4>Snacks</h4>
+    </section>
+    
+    <footer>
+    </footer>
+
+</section>
+
+<%= link_to 'Create Entry', new_daily_entry_path(@user) %>

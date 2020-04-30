@@ -1,19 +1,25 @@
 class UsersController < ApplicationController
     def new
-        user = User.new
+        @user = User.new
     end
 
     def create
-        user = User.new(params[:user])
-        if user.save
-            redirect_to login_path
+        @user = User.new
+        @user.first_name = params[:user][:first_name]
+        @user.last_name = params[:user][:last_name]
+        @user.email = params[:user][:email]
+        @user.password = params[:user][:password]
+
+        if @user.save
+            flash[:notice] = "Success! Please log in."
+            redirect_to root_path
         else
             render 'users/new'
         end
     end
 
     def show
-        user = User.find(params[:id])
+        @user = User.find(params[:id])
     end
 
 end
