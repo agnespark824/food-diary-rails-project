@@ -10,20 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_040138) do
+ActiveRecord::Schema.define(version: 2020_05_05_231119) do
 
-  create_table "daily_entries", force: :cascade do |t|
-    t.string "entry_date"
+  create_table "entries", force: :cascade do |t|
+    t.date "date"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "entry_foods", id: false, force: :cascade do |t|
+    t.integer "entry_id"
+    t.integer "food_id"
+    t.integer "servings"
+  end
+
   create_table "foods", force: :cascade do |t|
     t.string "name"
-    t.integer "unit_number"
     t.string "unit_type"
-    t.integer "servings"
+    t.integer "serving_size"
     t.integer "calories"
     t.integer "carbs"
     t.integer "fat"
@@ -34,16 +39,20 @@ ActiveRecord::Schema.define(version: 2020_04_27_040138) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "meals", force: :cascade do |t|
-    t.string "name"
-    t.integer "daily_entry_id"
+  create_table "recipe_foods", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "food_id", null: false
+    t.integer "servings"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_recipe_foods_on_food_id"
+    t.index ["recipe_id"], name: "index_recipe_foods_on_recipe_id"
   end
 
-  create_table "meals_foods", id: false, force: :cascade do |t|
-    t.integer "meal_id"
-    t.integer "food_id"
+  create_table "recipes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +64,6 @@ ActiveRecord::Schema.define(version: 2020_04_27_040138) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "recipe_foods", "foods"
+  add_foreign_key "recipe_foods", "recipes"
 end

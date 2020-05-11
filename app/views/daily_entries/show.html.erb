@@ -1,12 +1,53 @@
-<h1><%= @entry.entry_date %></h1>
-
-<p>Breakfast</p>
-<br>
-<p>Lunch</p>
-<br>
-<p>Dinner</p>
-<br>
-<p>Snacks</p>
-<br>
+<h1><%= format_date(@entry) %></h1>
 
 <%= link_to 'Add Food', new_daily_entry_meal_path(@entry) %>
+
+<section>
+    <%= form_for(@entry) do |f| %>
+        <p>
+            <%= f.label :entry_date, 'Entry Date' %>
+            <%= f.date_field :entry_date %>
+        </p>
+        
+        <fieldset>
+            <p>
+                <label>Breakfast</label>
+##@daily_entry breakfast foods
+
+                <name="daily_entry[meals_attributes][][breakfast]">
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <p>
+                <label>Lunch</label>
+                <name="daily_entry[meals_attributes][][lunch]">
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <p>
+                <label>Dinner</label>
+                <name="daily_entry[meals_attributes][][dinner]">
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <p>
+                <label>Snack</label>
+                <name="daily_entry[meals_attributes][][snack]">
+            </p>
+        </fieldset>
+        <br>
+        <%= f.submit 'Save' %>
+    <% end %>
+</section>
+
+
+
+
+
+
+
+
+

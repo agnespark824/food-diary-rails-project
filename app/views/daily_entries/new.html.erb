@@ -1,44 +1,40 @@
 <section>
-    <h1>Create Entry</h1>
+    <h1>Create Food Diary Entry</h1>
     <%= form_for(@entry) do |f| %>
-        <p> 
-            Date: <%= f.date_field :entry_date %> 
+        <p>
+            <%= f.label :entry_date, 'Entry Date' %>
+            <%= f.date_field :entry_date %>
         </p>
+        
+        <fieldset>
+            <p>
+                <label>Breakfast</label>
+                <name="daily_entry[meals_attributes][][breakfast]">
+            </p>
+        </fieldset>
 
-        <%= f.fields_for :meals do |meal_builder| %>
-            <fieldset>
-                <legend>Breakfast</legend>
-                <p>
-                    <%= meal_builder.label 'My Foods' %><br>
-                    <%= collection_select
+        <fieldset>
+            <p>
+                <label>Lunch</label>
+                <name="daily_entry[meals_attributes][][lunch]">
+            </p>
+        </fieldset>
 
+        <fieldset>
+            <p>
+                <label>Dinner</label>
+                <name="daily_entry[meals_attributes][][dinner]">
+            </p>
+        </fieldset>
 
-
-                    <label>Breakfast</label>
-                    <input type="text" name="user[daily_entries_attributes][][breakfast]">
-                </p>
-                <p>
-                    <label>Lunch</label>
-                    <input type="text" name="user[daily_entries_attributes][][lunch]">
-                </p>
-                <p>
-                    <label>Dinner</label>
-                    <input type="text" name="user[daily_entries_attributes][][dinner]">
-                </p>
-                <p>
-                    <label>Snacks</label>
-                    <input type="text" name="user[daily_entries_attributes][][snacks]">
-                </p>
-            </fieldset>
-
-        :daily_entries_attributes => [
-            {:meal: , }
-
-        ]
-
-
-
-        <%= f.submit :Save %>
+        <fieldset>
+            <p>
+                <label>Snack</label>
+                <name="daily_entry[meals_attributes][][snack]">
+            </p>
+        </fieldset>
+        <br>
+        <%= f.submit 'Save' %>
     <% end %>
 </section>
 
@@ -46,10 +42,3 @@
 
 
 
-
-
-def daily_entries_attributes=(daily_entries_attributes)
-    daily_entries_attributes.each do |entry_attributes|
-        self.daily_entries.build(entry_attributes)
-    end 
-end

@@ -1,3 +1,5 @@
+require 'date'
+
 class DailyEntriesController < ApplicationController
     before_action :authentication_required
     
@@ -7,19 +9,23 @@ class DailyEntriesController < ApplicationController
     
     def new
         @entry = DailyEntry.new
-        @entry.meals.build(meal_name: 'Breakfast')
-        @entry.meals.build(meal_name: 'Breakfast')
     end
 
     def create
         @entry = DailyEntry.new(entry_params)
-        @entry.user = @current_user
-        @entry.save
-        redirect_to daily_entry_path(@entry)
+        if DailyEntry.where(entry_params) != true
+            @entry.user = @current_user
+            @entry.save
+            redirect_to daily_entry_path(@entry)
+        else
+            flash[:message] = 'An entry already exists on that date.'
+            render 'DailyEntries#new'
+        end
     end
 
     def show
         @entry = DailyEntry.find(params[:id])
+        @entry.meals
     end
     
     def edit

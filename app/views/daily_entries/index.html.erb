@@ -9,7 +9,7 @@
         
             <li>
                 <div>
-                    <label><%= link_to entry.entry_date, daily_entry_path(entry) %></label>
+                    <label><%= link_to format_date(entry), daily_entry_path(entry) %></label>
                 </div>
             </li>
         <% end %>

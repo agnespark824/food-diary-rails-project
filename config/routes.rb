@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :recipes_entries_foods
+  resources :recipes
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'
 
@@ -15,8 +17,6 @@ Rails.application.routes.draw do
 
   resources :foods
   
-
-
 
   root 'daily_entries#index'
 
