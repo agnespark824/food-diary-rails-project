@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
             
                 redirect_to root_path
             else
+                flash[:message] = "Try again."
                 render 'sessions/new'
             end
         end

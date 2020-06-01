@@ -1,40 +1,44 @@
 class FoodsController < ApplicationController
     def index
-        if params[:user_id]
-            foods = User.find(params[:user_id]).foods
+        if @entry
+            #@entry = Entry.find(params[:entry_id])
+            @foods = @entry.foods
+        elsif params[:recipe_id]
+            @recipe = Recipe.find(params[:recipe_id])
+            @foods = @recipe.foods
         else
-            foods = Food.all
+            @foods = Food.all
         end
     end
     
     def new
-        food = Food.new
+        @food = Food.new
     end
 
     def create
-        food = Food.new(food_params)
-        food.save
-        redirect_to food_path(food)
+        @food = Food.new(food_params)
+        @food.save
+        redirect_to food_path(@food)
     end
 
     def show
-        meal = Meal.find(params[:id])
+        @food = Food.find(params[:id])
     end
     
     def edit
-        meal = Meal.find(params[:id])
+        @food = Food.find(params[:id])
     end
 
     def update
-        meal = Meal.find(params[:id])
-        meal.update(meal_params)
-        redirect_to meal_path(meal)
+        @food = Food.find(params[:id])
+        @food.update(food_params)
+        redirect_to food_path(@food)
     end
 
     private
 
-    def meal_params
-        params.require(:meal).permit(:name)
+    def food_params
+        params.require(:food).permit(:name, :unit_type, :serving_size, :calories, :carbs, :fat, :protein, :sodium, :sugar)
     end
 
 end

@@ -1,5 +1,32 @@
-<h1>Hello World</h1>
+<h1>Create a new food!</h1>
 
+<%= form_with model: [@entry, @food], local: true do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "n/a" %><br>
 
+    <%= f.label :unit_type %>
+    <%= f.text_field :unit_type, placeholder: "n/a" %><br>
 
-#Calories, fat, etc form
+    <%= f.label :serving_size %>
+    <%= f.number_field :serving_size, placeholder: "n/a" %><br>
+
+    <%= f.label :calories %>
+    <%= f.number_field :calories, placeholder: "n/a" %><br>
+
+    <%= f.label :carbs %>
+    <%= f.number_field :carbs, placeholder: "n/a" %><br>
+
+    <%= f.label :fat %>
+    <%= f.number_field :fat, placeholder: "n/a" %><br>
+
+    <%= f.label :protein %>
+    <%= f.number_field :protein, placeholder: "n/a" %><br>
+
+    <%= f.label :sodium %>
+    <%= f.number_field :sodium, placeholder: "n/a" %><br>
+
+    <%= f.label :sugar %>
+    <%= f.number_field :sugar, placeholder: "n/a" %><br>
+    
+    <%= f.submit %>
+<% end%>

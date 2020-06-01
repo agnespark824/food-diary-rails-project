@@ -2,14 +2,14 @@ class CreateFoods < ActiveRecord::Migration[6.0]
   def change
     create_table :foods do |t|
       t.string :name
-      t.string :unit_type
-      t.integer :serving_size
-      t.integer :calories
-      t.integer :carbs
-      t.integer :fat
-      t.integer :protein
-      t.integer :sodium
-      t.integer :sugar
+      t.string :serving_unit
+      t.float :serving_size
+      t.float :calories
+      t.float :carbs
+      t.float :fat
+      t.float :protein
+      t.float :sodium
+      t.float :sugar
       t.timestamps null: false 
     end
   end

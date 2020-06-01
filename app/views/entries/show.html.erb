@@ -1,0 +1,18 @@
+<h1><%= @entry.date %></h1>
+
+<%= link_to 'Add Food', new_entry_food_path(@entry) %>
+
+<section>
+    <%= @entry.foods.each do |food| %>
+        <%= food.name %>
+    <% end %>
+</section>
+
+
+
+
+
+
+
+
+

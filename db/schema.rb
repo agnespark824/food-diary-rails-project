@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 2020_05_05_231119) do
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
-    t.string "unit_type"
-    t.integer "serving_size"
-    t.integer "calories"
-    t.integer "carbs"
-    t.integer "fat"
-    t.integer "protein"
-    t.integer "sodium"
-    t.integer "sugar"
+    t.string "serving_unit"
+    t.float "serving_size"
+    t.float "calories"
+    t.float "carbs"
+    t.float "fat"
+    t.float "protein"
+    t.float "sodium"
+    t.float "sugar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

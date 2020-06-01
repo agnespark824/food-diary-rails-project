@@ -1,19 +1,14 @@
-<h1><%= format_date(@entry) %></h1>
-
-<%= link_to 'Add Food', new_daily_entry_meal_path(@entry) %>
-
 <section>
+    <h1>Create Food Diary Entry</h1>
     <%= form_for(@entry) do |f| %>
         <p>
-            <%= f.label :entry_date, 'Entry Date' %>
-            <%= f.date_field :entry_date %>
+            <%= f.label :date, 'Entry Date' %>
+            <%= f.date_field :date %>
         </p>
         
         <fieldset>
             <p>
                 <label>Breakfast</label>
-##@daily_entry breakfast foods
-
                 <name="daily_entry[meals_attributes][][breakfast]">
             </p>
         </fieldset>
@@ -42,10 +37,6 @@
         <%= f.submit 'Save' %>
     <% end %>
 </section>
-
-
-
-
 
 
 

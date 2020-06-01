@@ -1,0 +1,14 @@
+
+<% if @entry %>
+    <h2>Food from <%= @entry.date %></h2>
+<% end %>
+
+<h4 class="red-text"> Name: <%= @food.name %>  </h4>
+<h5>Serving Unit: <%= @food.unit_type %></h5>
+<h5>Servings: <%= @food.serving_size %></h5>
+<h5>Calories: <%= @food.calories %> g</h5>
+<h5>Carbs: <%= @food.carbs %> g</h5> 
+<h5>Fat: <%= @food.fat %> g</h5>
+<h5>Protein: <%= @food.protein %> g</h5> 
+<h5>Sodium: <%= @food.sodium %> mg</h5>
+<h5>Sugar: <%= @food.sugar %> g</h5>
