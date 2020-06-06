@@ -14,19 +14,23 @@ ActiveRecord::Schema.define(version: 2020_05_05_231119) do
 
   create_table "entries", force: :cascade do |t|
     t.date "date"
-    t.integer "user_id"
+    t.string "meal"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "entry_foods", id: false, force: :cascade do |t|
-    t.integer "entry_id"
-    t.integer "food_id"
-    t.integer "servings"
+  create_table "entry_foods", force: :cascade do |t|
+    t.integer "entry_id", null: false
+    t.integer "food_id", null: false
+    t.float "servings"
+    t.string "meal"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "foods", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "serving_unit"
     t.float "serving_size"
     t.float "calories"
@@ -42,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_231119) do
   create_table "recipe_foods", force: :cascade do |t|
     t.integer "recipe_id", null: false
     t.integer "food_id", null: false
-    t.integer "servings"
+    t.float "servings"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_id"], name: "index_recipe_foods_on_food_id"

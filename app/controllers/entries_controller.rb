@@ -70,7 +70,7 @@ class EntriesController < ApplicationController
     private
 
     def entry_params
-        params.require(:entry).permit(:date, :food_ids, :entry_food_ids)
+        params.require(:entry).permit(:date, :meal, :food_ids, :entry_food_ids)
     end
 
     def food_ids
