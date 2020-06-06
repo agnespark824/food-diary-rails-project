@@ -1,0 +1,16 @@
+<h1>Food Database</h1>
+
+<div>
+    <ul>
+        <% @foods.each do |food| %>
+            <% if food.name != nil %>
+                <li><%= link_to food.name, food_path(food) %></li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>
+
+<div>
+    <%= link_to "Create New Food Record", new_food_path %><br>
+    <%= link_to "Back", root_path %><br>
+</div>

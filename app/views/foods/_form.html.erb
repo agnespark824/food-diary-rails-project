@@ -1,10 +1,14 @@
 <%= link_to "Home", root_path %><br>
 
-<h1>Create New Food Record</h1>
-
-<%= form_with model: [@food], local: true do |f| %>
+<%= form_for @food do |f| %>
     <%= f.label :name, "Name:" %>
     <%= f.text_field :name, placeholder: "n/a" %><br>
+
+    <% if params[:entry_id] %>    
+        <%= f.hidden_field :entry_id %>
+    <% elsif params[:recipe_id] %>
+        <%= f.hidden_field :recipe_id %>
+    <% end %>
 
     <%= f.label :serving_size, "Serving Size:" %>
     <%= f.number_field :serving_size, placeholder: "n/a", step: :any %>
@@ -38,3 +42,4 @@
     
     <%= f.submit %>
 <% end %>
+

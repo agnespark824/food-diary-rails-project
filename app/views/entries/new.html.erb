@@ -1,43 +1,19 @@
 <section>
-    <h1>Create Food Diary Entry</h1>
+    <h1>Create New Entry</h1>
     <%= form_for(@entry) do |f| %>
         <p>
-            <%= f.label :date, 'Entry Date' %>
+            <%= f.label :date, 'Date:' %>
             <%= f.date_field :date %>
         </p>
-        
-        <fieldset>
-            <p>
-                <label>Breakfast</label>
-                <name="daily_entry[meals_attributes][][breakfast]">
-            </p>
-        </fieldset>
-
-        <fieldset>
-            <p>
-                <label>Lunch</label>
-                <name="daily_entry[meals_attributes][][lunch]">
-            </p>
-        </fieldset>
-
-        <fieldset>
-            <p>
-                <label>Dinner</label>
-                <name="daily_entry[meals_attributes][][dinner]">
-            </p>
-        </fieldset>
-
-        <fieldset>
-            <p>
-                <label>Snack</label>
-                <name="daily_entry[meals_attributes][][snack]">
-            </p>
-        </fieldset>
         <br>
-        <%= f.submit 'Save' %>
+        
+        
+
+        <%= f.submit %>
     <% end %>
 </section>
-
+        
+   
 
 
 

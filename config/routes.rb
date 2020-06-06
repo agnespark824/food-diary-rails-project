@@ -10,15 +10,18 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :destroy] 
 
   resources :entries do
+    collection do
+      put :update
+    end
+  end
+
+  delete 'entry_food', to: 'entries#destroy_entry_food'
+
+  resources :entries do
     resources :foods, only: [:index, :new, :create]
   end
   
   resources :foods
-  
-
-  #get '/entries/:entry_id/foods', to: "foods#index"
-  #get '/entries/:entry_id/foods/new', to: "foods#new", as: "new_entry_food"
-
 
   root 'entries#index'
 
