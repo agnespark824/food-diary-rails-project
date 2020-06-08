@@ -1,20 +1,12 @@
-<section>
-    <header>
-    </header>
-
-    <%= link_to 'Create New Entry', new_entry_path(@user) %>
-
-
-    <section>
-        <h3>Your Entries</h3>
-            <% if @entries.empty? %>
-                <p>You do not have any entries.</p>
-            <% else %>    
-                <ul>
-                    <% @entries.each do |entry| %>
-                        <li><%= link_to entry.date, entry_path(entry) %></li>
-                    <% end %>
-                </ul>
-            <% end %>
-    </section>
+<h3>Your Entries</h3>
+<% if @entries.empty? %>
+    <p>You do not have any entries.</p>
+<% else %>    
+    <ul>
+        <% @entries.each do |entry| %>
+            <li><%= link_to entry.formatted_date, entry_path(entry) %></li>
+        <% end %>
+    </ul>
+<% end %>
+  
 

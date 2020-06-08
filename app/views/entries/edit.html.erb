@@ -1,13 +1,9 @@
-<%= link_to "Home", root_path %><br>
-
 <%= form_tag entry_path(@entry), method: :put do %>
-    <h3>Entry Date</h3>
-    <%= date_field_tag "entry[date]", @entry.date %>
-    <br>
     <h4>Add Food(s) To Entry</h4>
     <% Food.all.each do |food| %>
         <%= check_box_tag "entry[food_ids][]", food.id %>
         <%= food.name %>
+        <br>
     <% end %>
     <br>
     <br>

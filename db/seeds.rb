@@ -13,14 +13,14 @@ Entry.delete_all
 User.delete_all
 
 u = User.create!(email: 'test', password: 'test')
-apple = Food.create!(name:"apple", calories: 40, serving_size: 1)
+apple = Food.create!(name:"Apple", calories: 80, serving_size: 60, serving_unit: "g")
 
-e = u.entries.create!
-e.entry_foods.create!(food:apple, servings: 2)
+e = u.entries.create!(date: Date.today)
+#e.entry_food.create!(food: apple, servings: 2, meal: "Snack")
 
-ice = Food.create!(name: 'ice', calories: 0, serving_size: 1)
+ice = Food.create!(name: 'Ice', calories: 0, serving_size: 5, serving_unit: "g")
 
-r = Recipe.create!(name: "apple smoothie")
+r = Recipe.create!(name: "Apple Smoothie")
 
-r.recipe_foods.create!(food: ice, servings: 20)
-r.recipe_foods.create!(food: apple, servings: 2)
+#r.recipe_food.create!(food: ice, servings: 1)
+#r.recipe_food.create!(food: apple, servings: 0.5)

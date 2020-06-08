@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsProject</title>
+    <title>Food Diary</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+ 
   <body>
+    
+    <div class="topnav">
+      <a class="active" href='/entries'>Home</a>
+      <a href='entries/new'>Create New Entry</a>
+      <a href='foods/new'>Create New Food</a>
+    </div>
+
+ 
     <%= yield %>
   </body>
 </html>

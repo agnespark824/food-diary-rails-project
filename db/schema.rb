@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 2020_05_05_231119) do
 
   create_table "entries", force: :cascade do |t|
     t.date "date"
-    t.string "meal"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "entry_foods", force: :cascade do |t|
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_05_05_231119) do
     t.string "meal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["entry_id"], name: "index_entry_foods_on_entry_id"
+    t.index ["food_id"], name: "index_entry_foods_on_food_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -54,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_231119) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -68,6 +70,9 @@ ActiveRecord::Schema.define(version: 2020_05_05_231119) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "entries", "users"
+  add_foreign_key "entry_foods", "entries"
+  add_foreign_key "entry_foods", "foods"
   add_foreign_key "recipe_foods", "foods"
   add_foreign_key "recipe_foods", "recipes"
 end

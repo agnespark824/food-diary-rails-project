@@ -9,19 +9,19 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show, :destroy] 
 
+  resources :foods
+
   resources :entries do
     collection do
       put :update
     end
   end
 
-  delete 'entry_food', to: 'entries#destroy_entry_food'
-
   resources :entries do
-    resources :foods, only: [:index, :new, :create]
+    resources :entry_foods, only: [:index, :show, :new, :create]
   end
-  
-  resources :foods
+
+  resources :entry_foods, only: [:edit, :update, :show, :destroy]
 
   root 'entries#index'
 

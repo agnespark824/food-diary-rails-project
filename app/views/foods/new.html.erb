@@ -1,40 +1,38 @@
-<%= link_to "Home", root_path %><br>
-
-<h1>Create New Food Record</h1>
+<h1>New Food Record</h1>
 
 <%= form_with model: [@food], local: true do |f| %>
-    <%= f.label :name, "Name:" %>
+    <strong><%= f.label :name, "Name:" %></strong>
     <%= f.text_field :name, placeholder: "n/a" %><br>
 
-    <%= f.label :serving_size, "Serving Size:" %>
+    <strong><%= f.label :serving_size, "Serving Size:" %></strong>
     <%= f.number_field :serving_size, placeholder: "n/a", step: :any %>
 
-    <%= f.label :serving_unit_grams, "g" %>
     <%= f.radio_button :serving_unit, "g" %>
-    <%= f.label :serving_unit_tbsp, "tbsp(s)" %>
+    <%= f.label :serving_unit_grams, "g" %>
     <%= f.radio_button :serving_unit, "tbsp(s)" %>
-    <%= f.label :serving_unit_tsp, "tsp(s)" %>
+    <%= f.label :serving_unit_tbsp, "tbsp(s)" %>
     <%= f.radio_button :serving_unit, "tsp(s)" %>
-    <%= f.label :serving_unit_cups, "cup(s)" %>
-    <%= f.radio_button :serving_unit, "cup(s)" %><br>
+    <%= f.label :serving_unit_tsp, "tsp(s)" %>
+    <%= f.radio_button :serving_unit, "cup(s)" %>
+    <%= f.label :serving_unit_cups, "cup(s)" %><br>
     
-    <%= f.label :calories, "Calories (kcal):" %>
+    <strong><%= f.label :calories, "Calories (kcal):" %></strong>
     <%= f.number_field :calories, placeholder: "n/a", step: :any %><br>
 
-    <%= f.label :carbs, "Carbohydrates (g):" %>
+    <strong><%= f.label :carbs, "Carbohydrates (g):" %></strong>
     <%= f.number_field :carbs, placeholder: "n/a", step: :any %><br>
 
-    <%= f.label :fat, "Fat (g):" %>
-    <%= f.number_field :fat, placeholder: "n/a", step: :any %><br>
+    <strong><%= f.label :fat, "Fat (g):" %></strong>
+    <%= f.number_field :fat, placeholder: "n/a", step: '0.01' %><br>
 
-    <%= f.label :protein, "Protein (g):" %>
+    <strong><%= f.label :protein, "Protein (g):" %></strong>
     <%= f.number_field :protein, placeholder: "n/a", step: :any %><br>
 
-    <%= f.label :sodium, "Sodium (mg):" %>
+    <strong><%= f.label :sodium, "Sodium (mg):" %></strong>
     <%= f.number_field :sodium, placeholder: "n/a", step: :any %><br>
 
-    <%= f.label :sugar, "Sugars (g):" %>
+    <strong><%= f.label :sugar, "Sugars (g):" %></strong>
     <%= f.number_field :sugar, placeholder: "n/a", step: :any %><br><br>
     
-    <%= f.submit %>
+    <%= f.submit "Create" %>
 <% end %>

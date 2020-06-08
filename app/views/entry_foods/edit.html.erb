@@ -1,0 +1,37 @@
+<h3><strong><%= @food.name %></strong></h3>
+<fieldset>
+<p><strong>Serving Size: </strong><%= @food.serving_size %> <%= @food.serving_unit %></p>
+</fieldset>
+<fieldset>
+    <%= form_for @entry_food do |f| %>
+        <strong><%= f.label :servings, "Number Of Servings:" %></strong>
+        <%= f.number_field :servings, placeholder: "n/a", step: :any %><br><br>
+        
+        <strong><%= f.label :meal, "Meal:" %></strong>
+        <%= f.radio_button :meal, "Breakfast" %>
+        <%= f.label :meal_breakfast, "Breakfast" %>
+        <%= f.radio_button :meal, "Lunch" %>
+        <%= f.label :meal_lunch, "Lunch" %>
+        <%= f.radio_button :meal, "Dinner" %>
+        <%= f.label :meal_dinner, "Dinner" %>
+        <%= f.radio_button :meal, "Snack" %>
+        <%= f.label :meal_snacks, "Snack" %><br><br>
+        
+        <%= submit_tag "Submit" %>
+    <% end %>
+</fieldset>
+
+<% if @entry_food.servings %>
+<fieldset>
+    <p><strong>Calories: </strong><%= @food.calories * @entry_food.servings %> kcal</p>
+    <p><strong>Carbohydrates: </strong><%= @food.carbs * @entry_food.servings %> g</p> 
+    <p><strong>Fat: </strong><%= @food.fat * @entry_food.servings %> g</p>
+    <p><strong>Protein: </strong><%= @food.protein * @entry_food.servings %> g</p>
+    <p><strong>Sodium: </strong><%= @food.sodium * @entry_food.servings %> mg</p>
+    <p><strong>Sugars: </strong><%= @food.sugar * @entry_food.servings %> g</p>
+</fieldset><br>
+<% end %>
+<br>
+<%= link_to "Back To Entry", entry_path(@entry) %><br>
+<%= link_to "Delete Food From Entry", entry_food_path, method: :delete,  data: {confirm: "Are you sure you want to delete this food?"} %>
+

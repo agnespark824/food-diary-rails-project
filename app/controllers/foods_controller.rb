@@ -13,11 +13,6 @@ class FoodsController < ApplicationController
     
     def new
         @food = Food.new
-        if params[:entry_id]
-            @entry_food = EntryFood.new(entry_id: params[:entry_id], food_id: @food)
-        elsif params[:recipe_id]
-            @recipe_food = RecipeFood.new(recipe_id: params[:recipe_id], food_id: @food)
-        end 
     end
 
     def create
@@ -50,10 +45,11 @@ class FoodsController < ApplicationController
         @food.destroy
         redirect_to foods_path, notice: "The food record has been successfully deleted."
     end
+
     private
 
     def food_params
-        params.require(:food).permit(:name, :unit_type, :serving_size, :serving_unit, :calories, :carbs, :fat, :protein, :sodium, :sugar, :entry_id, :recipe_id)
+        params.require(:food).permit(:name, :serving_unit, :serving_size, :calories, :carbs, :fat, :protein, :sodium, :sugar)
     end
 
 end

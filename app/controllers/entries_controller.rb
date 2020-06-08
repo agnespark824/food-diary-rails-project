@@ -25,29 +25,35 @@ class EntriesController < ApplicationController
     def show
         @entry = Entry.find(params[:id])
         @entry_foods = @entry.entry_foods
-        binding.pry
+
+        @breakfast_foods = @entry_foods.select{|food| food.meal == "Breakfast"}
+        @lunch_foods = @entry_foods.select{|food| food.meal == "Lunch"}
+        @dinner_foods = @entry_foods.select{|food| food.meal == "Dinner"}
+        @snack_foods = @entry_foods.select{|food| food.meal == "Snack"}
+        @uncat_foods = @entry_foods.select{|food| food.meal == nil}
     end
 
     def edit
         @entry = Entry.find(params[:id])
         @foods = Food.all
-        @entry_foods = EntryFood.where(entry_id: @entry)
+        @entry_foods = @entry.entry_foods
     end
 
     def update
         @entry = Entry.find(params[:id])
-        @entry.update(entry_params)
+        
+        if entry_params
+            @entry.update(entry_params)
 
-        if entry_params[:food_ids]
-            food_ids.each do |food_id|
-                entry_food = EntryFood.new
-                entry_food.entry_id = @entry 
-                entry_food.food_id = food_id
-                entry_food.save
+            if food_ids
+                food_ids.each do |food_id|
+                    entry_food = EntryFood.new
+                    entry_food.entry = @entry 
+                    entry_food.food_id = food_id
+                    entry_food.save
+                end
             end
             redirect_to entry_path(@entry), notice: "The entry has been updated."
-        elsif entry_params && !entry_params[:food_ids]
-            redirect_to entry_path(@entry), notice: "The entry date has been updated."
         else
             flash[:error] = 'Your changes were not saved.'
             render 'edit'
@@ -60,21 +66,14 @@ class EntriesController < ApplicationController
         redirect_to root_path, notice: "The entry has been successfully deleted."
     end
 
-    def destroy_entry_food
-        @entry = Entry.find(params[:id])
-        @entry_food = EntryFood.find_by(entry_id: @entry, food_id: entry_params[:food_id])
-        @entry_food.destroy
-        redirect_to entry_path(@entry), notice: "The entry has been updated."
-    end
-
     private
 
     def entry_params
-        params.require(:entry).permit(:date, :meal, :food_ids, :entry_food_ids)
+        params.require(:entry).permit(:meal)
     end
 
     def food_ids
-        @food_ids = entry_params[:food_ids].collect{|id| id.to_i}
+        @food_ids = params[:entry][:food_ids].collect{|id| id.to_i}
     end
 
 end
